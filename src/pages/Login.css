@@ -1,89 +1,290 @@
-/* 🌌 Professional Banking Background */
-body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #35b3e9, #62d3f5, #0d87f2);
-  height: 100vh;
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap');
+
+:root {
+  --gold: #d4af37;
+  --accent: #00d2ff;
+  --glass: rgba(255, 255, 255, 0.08);
 }
 
-/* Center Layout */
-.container {
+.login-page {
+  min-height: 100vh;
+  background: #060b13;
+  font-family: 'Outfit', sans-serif;
   display: flex;
-  justify-content: center;
   align-items: center;
-  height: 100vh;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  color: white;
+}
+
+/* Floating Background Glows */
+.bg-glow-1, .bg-glow-2 {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: 0;
+  opacity: 0.3;
+}
+.bg-glow-1 { background: #1e3a8a; top: -100px; left: -100px; animation: float 10s infinite alternate; }
+.bg-glow-2 { background: #312e81; bottom: -100px; right: -100px; animation: float 12s infinite alternate-reverse; }
+
+@keyframes float {
+  from { transform: translate(0, 0); }
+  to { transform: translate(50px, 50px); }
+}
+
+.login-container {
+  z-index: 10;
+  width: 100%;
+  max-width: 450px;
+  padding: 20px;
+}
+
+/* Header */
+.bank-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.logo-icon {
+  color: var(--accent);
+  filter: drop-shadow(0 0 10px var(--accent));
+  margin-bottom: 10px;
+}
+
+.bank-header h1 {
+  font-weight: 800;
+  font-size: 2.5rem;
+  letter-spacing: 5px;
+  margin: 0;
+  background: linear-gradient(to bottom, #fff, #888);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  letter-spacing: 10px;
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+.encryption-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 255, 128, 0.1);
+  color: #00ff80;
+  padding: 6px 15px;
+  border-radius: 50px;
+  font-size: 0.65rem;
+  font-weight: bold;
+  margin-top: 15px;
+  border: 1px solid rgba(0, 255, 128, 0.2);
+}
+
+.pulse-dot {
+  width: 6px;
+  height: 6px;
+  background: #00ff80;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #00ff80;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.3; }
+  100% { opacity: 1; }
 }
 
 /* Glass Card */
-.card {
-  width: 380px;
+.glass-card {
+  background: var(--glass);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 30px;
   padding: 40px;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(18px);
-  box-shadow: 0 25px 60px rgba(0,0,0,0.5);
-  color: white;
-  transition: 0.4s ease;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
 }
 
-.card:hover {
-  transform: translateY(-3px);
-}
-
-/* Main Heading */
-.main-heading {
+.card-title {
   text-align: center;
-  font-weight: 700;
-  font-size: 28px;
+  font-weight: 300;
   letter-spacing: 2px;
-  margin-bottom: 5px;
-}
-
-.sub-heading {
-  text-align: center;
-  font-size: 14px;
-  margin-bottom: 25px;
-  color: rgba(255,255,255,0.7);
+  margin-bottom: 30px;
+  opacity: 0.9;
 }
 
 /* Inputs */
-.form-control {
-  background: rgba(255,255,255,0.1);
-  border: none;
-  border-radius: 12px;
-  padding: 12px;
-  color: white;
-  margin-bottom: 15px;
-  transition: 0.3s ease;
+.input-wrapper {
+  position: relative;
+  margin-bottom: 20px;
 }
 
-.form-control:focus {
-  background: rgba(255,255,255,0.2);
-  box-shadow: 0 0 15px #00d4ff;
+.field-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.5;
+}
+
+.input-wrapper input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 15px 15px 15px 45px;
+  color: white;
+  transition: 0.3s;
+  box-sizing: border-box;
+}
+
+.input-wrapper input:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--accent);
+  box-shadow: 0 0 15px rgba(0, 210, 255, 0.2);
+}
+
+.toggle-eye {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: white;
+  opacity: 0.4;
+  cursor: pointer;
 }
 
 /* Button */
-.btn-primary {
-  border-radius: 30px;
-  font-weight: 600;
-  padding: 12px;
-  background: linear-gradient(45deg, #00d4ff, #0072ff);
+.auth-btn {
+  width: 100%;
+  padding: 16px;
+  border-radius: 15px;
   border: none;
-  transition: 0.3s ease;
+  background: linear-gradient(90deg, #1e3a8a, var(--accent));
+  color: white;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: 0.4s;
+  letter-spacing: 1px;
 }
 
-.btn-primary:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 20px #00d4ff;
+.auth-btn:hover {
+  filter: brightness(1.2);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 210, 255, 0.3);
 }
 
-/* Link */
-a {
-  color: #00d4ff;
-  font-weight: 600;
+/* Loading Spinner */
+.loader {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255,255,255,0.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.card-footer {
+  text-align: center;
+  margin-top: 25px;
+  font-size: 0.85rem;
+  opacity: 0.6;
+}
+
+.card-footer a {
+  color: var(--accent);
   text-decoration: none;
+  font-weight: bold;
 }
 
-a:hover {
-  text-decoration: underline;
+.security-note {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 0.7rem;
+  opacity: 0.3;
+  letter-spacing: 1px;
+}
+
+/* --- Mini-Game Button & Popup --- */
+.game-btn {
+  margin-top: 25px;
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(90deg, #ff8c00, #ffd700);
+  color: #060b13;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.game-btn:hover {
+  filter: brightness(1.2);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+}
+
+.game-popup {
+  margin-top: 15px;
+  background: rgba(255,255,255,0.1);
+  padding: 20px;
+  border-radius: 20px;
+  text-align: center;
+  animation: popupFade 0.5s ease;
+}
+
+.game-popup input {
+  width: 60%;
+  padding: 8px;
+  margin: 10px 0;
+  border-radius: 12px;
+  border: 1px solid var(--accent);
+  background: rgba(0,0,0,0.2);
+  color: white;
+}
+
+.game-popup button {
+  padding: 8px 16px;
+  border-radius: 12px;
+  border: none;
+  background: var(--accent);
+  color: #060b13;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.game-popup button:hover {
+  filter: brightness(1.2);
+}
+
+.game-message {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #ffd700;
+}
+
+@keyframes popupFade {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
 }
